@@ -29,19 +29,19 @@
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		$("#left-button").click(function() {
 			ctx.clearRect(0,0,canvas.width,canvas.height);
-			leftBound = $.xcolor.average(leftBound, rightBound);
-			ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
-			ctx.fillRect(0,0,canvas.width,canvas.height);
-			console.log(rightBound);
-			console.log($.xcolor.average(leftBound, rightBound));
+			setTimeout(function() {
+				leftBound = $.xcolor.average(leftBound, rightBound);
+				ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+			}, (2 * 1000));
 		});
 		$("#right-button").click(function() {
 			ctx.clearRect(0,0,canvas.width,canvas.height);
-			rightBound = $.xcolor.average(leftBound, rightBound);
-			ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
-			ctx.fillRect(0,0,canvas.width,canvas.height);
-			console.log(leftBound);
-			console.log($.xcolor.average(leftBound, rightBound));
+			setTimeout(function() {
+				rightBound = $.xcolor.average(leftBound, rightBound);
+				ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+			}, (2 * 1000));
 		});
 	</script>
 </body>
