@@ -7,17 +7,15 @@
     <title>Color Test - Test your color perception and see how you compare</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
   </head>
-
   <body>
-    <header class="masthead text-center text-white">
+    <header id="masthead" class="masthead text-center text-white">
       <div class="masthead-content">
         <div class="container">
-          <h1 class="masthead-heading mb-0">Green or Yellow</h1>
-          <h3 class="masthead-subheading mb-0">How Do You Compare?</h2>
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Find Out Now</a>
+          <h1 class="masthead-heading mb-0">Color Test</h1>
+          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Take The Test</a>
         </div>
       </div>
       <div class="bg-circle-1 bg-circle"></div>
@@ -26,16 +24,58 @@
       <div class="bg-circle-4 bg-circle"></div>
     </header>
     <div class="container">
-      <div class="row">
+      <div class="text-center">
+        <h2>How Does It Work?</h2>
+        <p>Our color test works by showing you a mix of two colors and asking you to select which color you feel it is closest to. By repeating this process, we can determine the exact midpoint that divides the colors according to your perception. With this information, we compare your results against those from others around the world who took the test to see if you fall within the average or differ wildly.						</p>
+      </div>
+      <div class="card">
+        <div text-center>
+          <h2>Select Two Colors</h2>
+        </div>
+        <table class="table" width="100%">
+          <tr>
+            <td width="50% class="max-width">
+  	          <select name="colormenu-left" id="colormenu-left" dir="ltr">
+                <option id="leftGreen" value="Green" selected="selected">Green</option>
+          		<option id="leftCyan" value="Cyan">Cyan</option>
+  	    		<option id="leftBlue" value="Blue">Blue</option>
+  	    		<option id="leftPurple" value="Purple">Purple</option>
+   	   	 		<option id="leftMagenta" value="Magenta">Pink</option>
+    	    	<option id="leftRed" value="Red">Red</option>
+   	    		<option id="leftOrange" value="Orange">Orange</option>
+   	    		<option id="leftYellow" value="Yellow" disabled>Yellow</option>
+    	    	<option id="leftLime" value="Lime">Lime</option>    	    		
+    	    	<option id="leftWhite" value="White">White</option>
+    	    	<option id="leftBlack" value="Black">Black</option>
+  		  	  </select>
+  		  	</td>
+  		  	<td width="50%" class="max-width">
+  		  	  <select name="colormenu-right" id="colormenu-right" dir="ltr">
+            	<option id="rightGreen" value="Green" disabled>Green</option>
+          		<option id="rightCyan" value="Cyan">Cyan</option>
+  	    		<option id="rightBlue" value="Blue">Blue</option>
+  	    		<option id="rightPurple" value="Purple">Purple</option>
+   	   	 		<option id="rightMagenta" value="Magenta">Pink</option>
+    	    	<option id="rightRed" value="Red">Red</option>
+   	    		<option id="rightOrange" value="Orange">Orange</option>
+   	    		<option id="rightYellow" value="Yellow" selected="selected">Yellow</option>
+    	    	<option id="rightLime" value="Lime">Lime</option>    	    		
+    	    	<option id="rightWhite" value="White">White</option>
+    	    	<option id="rightBlack" value="Black">Black</option>
+  		      </select>
+  		    </td>
+  		  </tr>
+  		</table>  
   	    <canvas id="canvas-gradient" width="300px" height="300px">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
-  	  </div>
+      </div>
     </div>
     <footer class="py-5 bg-black">
       <div class="container">
-        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white small">Copyright &copy; <a href="https://www.github.com/feliser">feliser</a> 2020</p>
       </div>
     </footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

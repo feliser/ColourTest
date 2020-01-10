@@ -1,21 +1,40 @@
-/*!
- * Start Bootstrap - One Page Wonder v5.0.7 (https://startbootstrap.com/template-overviews/one-page-wonder)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
- */
-
 body {
   font-family: 'Lato';
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
   font-family: 'Catamaran';
   font-weight: 800 !important;
+}
+h2 {
+	font-size: 40px;
+	text-align: center !important; 
+}
+
+p {
+	font-size: 18px;
+}
+select {
+  text-align: left !important;
+  text-align-last: left !important;
+  width: 100%;
+  height: 40px;
+  /* webkit*/
+}
+option {
+  text-align: left !important; 
+  /* reset to left*/
+}
+
+.max-width {
+  width: 100%;
+}
+
+.card {
+	box-shadow: 0px 0px 18px #888888;
+	padding: 20px;
+	margin: 20px;
+	margin-top: 60px;
 }
 
 .btn-xl {
@@ -34,26 +53,6 @@ h6 {
   border-radius: 5rem;
 }
 
-.navbar-custom {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.navbar-custom .navbar-brand {
-  text-transform: uppercase;
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-  font-weight: 700;
-}
-
-.navbar-custom .navbar-nav .nav-item .nav-link {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-}
-
 header.masthead {
   position: relative;
   overflow: hidden;
@@ -65,6 +64,7 @@ header.masthead {
   background-attachment: scroll;
   background-size: cover;
   clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+  margin-bottom: 60px;
 }
 
 header.masthead .masthead-content {
@@ -162,10 +162,11 @@ header.masthead .bg-circle-4 {
 
 #canvas-gradient {
   background-image: linear-gradient(90deg, green, yellow);
-  width: 100%;
+  width: 100% - 20px;
   height: 80px;
-  border-radius: 5px;
-  margin-top: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  margin-top: 20px
   margin-bottom: 20px;
   border-width: 4px;
   border-color: black;
