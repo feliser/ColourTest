@@ -12,7 +12,7 @@ h2 {
 }
 
 p {
-	font-size: 18px;
+	font-size: 24px;
 }
 select {
   text-align: left !important;
@@ -117,7 +117,7 @@ header.masthead .bg-circle-4 {
 
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: calc(10rem + 55px);
+    padding-top: calc(10rem);
     padding-bottom: 10rem;
   }
   header.masthead .masthead-content .masthead-heading {
@@ -135,6 +135,20 @@ header.masthead .bg-circle-4 {
 .btn-primary {
   background-color: #808080;
   border-color: #808080;
+}
+
+.btn-start {
+  width: 50%;
+  background-color: #DDDDDD;
+  color: black;
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.btn-start:hover, .btn-start:focus, .btn-focus:active {
+  background-color: #111111;
+  color: #DDDDDD;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
