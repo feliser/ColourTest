@@ -19,6 +19,6 @@ $(document).ready(function() {
 	}
 
 	$('#start-button').click(function() {
-       window.location.href = window.location.href + "/test?leftColor=" + leftColor + "&rightColor=" + rightColor; 
+       window.location.href = window.location.href + "test?leftColor=" + leftColor + "&rightColor=" + rightColor; 
 	});
 }); 
