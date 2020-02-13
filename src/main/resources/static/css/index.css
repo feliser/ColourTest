@@ -138,6 +138,8 @@ header.masthead .bg-circle-4 {
 }
 
 .btn-start {
+  font-family: 'Catamaran';
+  font-weight: 600 !important;
   width: 50%;
   background-color: #DDDDDD;
   color: black;
