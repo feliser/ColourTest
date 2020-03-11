@@ -20,6 +20,7 @@
   		  <button class="btn btn-left" id="left-button">${leftColor}</button>
 	      <button class="btn btn-right" id="right-button">${rightColor}</button>
 	    </div>
+	    <button class="btn" id="submit-button" hidden>Submit Results</button>
 	  </div>
 	</div>
 	<script src="js/jquery.min.js"></script>
@@ -49,13 +50,22 @@
 					leftValue = (leftValue + rightValue) / 2.0;
 					ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
 					ctx.fillRect(0,0,canvas.width,canvas.height);
+					if(counter == 5) {
+						$("#submit-button").attr("hidden", false);
+						$("#right-button").attr("hidden", true);
+						$("#left-button").attr("hidden", true);
+					}
 					if (counter < 5) {
 						counter++;
 						$("#right-button").attr("disabled", false);
 		  		 	 	$("#left-button").attr("disabled", false);
 		  		 	}
-		  		 	$("#counter").text("Pass " + counter + "/5");
-				}, (2 * 1000));
+		  		 	if(counter <= 5) {
+		  		 		$("#counter").text("Pass " + counter + "/5");
+		  		 	} else {
+		  		 		$("#counter").text("Test Complete");
+		  		 	}
+				}, (1000));
 			}
 		});
 		$("#right-button").click(function() {
@@ -69,14 +79,28 @@
 					rightValue = (leftValue + rightValue) / 2.0;
 					ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
 					ctx.fillRect(0,0,canvas.width,canvas.height);
+					if(counter == 5) {
+						$("#submit-button").attr("hidden", false);
+						$("#right-button").attr("hidden", true);
+						$("#left-button").attr("hidden", true);
+					}
 					if(counter < 5) {
 						counter++;
 						$("#right-button").attr("disabled", false);
 		    			$("#left-button").attr("disabled", false);
 		    		}
-		    		$("#counter").text("Pass " + counter + "/5");
-				}, (2 * 1000));
+		    		if(counter <= 5) {
+		    			$("#counter").text("Pass " + counter + "/5");
+		    		} else {
+		    			$("#counter").text("Test Complete");
+		    		}
+				}, (1000));
 			}
 		});
 	</script>
+	<footer class="py-3 bg-white">
+      <div class="container">
+        <p class="m-0 text-center text-black small">Copyright &copy; <a href="https://www.github.com/feliser">feliser</a> 2020</p>
+      </div>
+    </footer>
 </body>
