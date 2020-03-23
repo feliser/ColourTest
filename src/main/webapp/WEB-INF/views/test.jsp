@@ -34,8 +34,8 @@
 		var ctx = canvas.getContext("2d");
 		var leftBound = "${leftColor}";
 		var rightBound = "${rightColor}";
-		var leftValue = 0;
-		var rightValue = 1;
+		var leftValue = 0.0;
+		var rightValue = 1.0;
 		ctx.fillStyle = $.xcolor.average(leftBound, rightBound);
 		console.log($.xcolor.average(leftBound, rightBound));
 		ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -96,6 +96,16 @@
 		    		}
 				}, (1000));
 			}
+		});
+		$("#submit-button").click(function () {
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200) {
+					// redirect to results page
+				}
+			};
+			xhttp.open("POST", "submit");
+			xhttp.send("{leftColor: " + JSON.stringify("${leftColor}") + ", rightColor: " + JSON.stringify("${rightColor}") + ", score: \"" + JSON.stringify((leftValue + rightValue) / 2) + "\"}");
 		});
 	</script>
 	<footer class="py-3 bg-white">
