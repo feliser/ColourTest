@@ -105,7 +105,8 @@
 				}
 			};
 			xhttp.open("POST", "submit");
-			xhttp.send("{leftColor: " + JSON.stringify("${leftColor}") + ", rightColor: " + JSON.stringify("${rightColor}") + ", score: \"" + JSON.stringify((leftValue + rightValue) / 2) + "\"}");
+			xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhttp.send("{\"leftColor\": " + JSON.stringify("${leftColor}") + ", \"rightColor\": " + JSON.stringify("${rightColor}") + ", \"score\": \"" + JSON.stringify((leftValue + rightValue) / 2) + "\"}");
 		});
 	</script>
 	<footer class="py-3 bg-white">
