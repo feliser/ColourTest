@@ -13,6 +13,6 @@ public class ColorTestController {
 			@RequestParam(value = "rightColor", required = false, defaultValue = "Yellow") String rightColor) {
 		model.addAttribute("leftColor", leftColor);
 		model.addAttribute("rightColor", rightColor);
-		return "test";
+		return "test"; // returns the test.jsp view
 	}
 }
