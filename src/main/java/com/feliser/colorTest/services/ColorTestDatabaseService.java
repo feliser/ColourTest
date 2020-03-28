@@ -1,18 +1,25 @@
 package com.feliser.colorTest.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.feliser.colorTest.models.ColorTestDatabaseModel;
+import com.feliser.colorTest.entities.ColorTestDatabaseScoreEntity;
+import com.feliser.colorTest.entities.ColorTestDatabaseSumEntity;
 import com.feliser.colorTest.models.ColorTestDatabaseRequestModel;
-import com.feliser.colorTest.repositories.ColorTestRepository;
+import com.feliser.colorTest.repositories.ColorTestScoreRepository;
+import com.feliser.colorTest.repositories.ColorTestSumRepository;
 
 @Service
 public class ColorTestDatabaseService {
 	@Autowired
-	private ColorTestRepository colorTestRepository;
+	private ColorTestScoreRepository colorTestScoreRepository;
+	
+	@Autowired
+	private ColorTestSumRepository colorTestSumRepository;
 
 	public ResponseEntity uploadScore(ColorTestDatabaseRequestModel request) {
 		if (request.getLeftColor().equals(request.getRightColor())) {
@@ -33,11 +40,46 @@ public class ColorTestDatabaseService {
 			// LeftColor or RightColor have invalid values
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
 		}
-		ColorTestDatabaseModel m = new ColorTestDatabaseModel();
-		m.setScore(request.getScore());
-		m.setLeftColor(request.getLeftColor());
-		m.setRightColor(request.getRightColor());
-		colorTestRepository.save(m);
-		return ResponseEntity.status(HttpStatus.OK).body("OK");
+		
+		ColorTestDatabaseScoreEntity c = new ColorTestDatabaseScoreEntity();
+		c.setScore(request.getScore()); c.setLeftColor(request.getLeftColor()); c.setRightColor(request.getRightColor());
+		colorTestScoreRepository.save(c);		
+		double average = calculateSum(c);
+
+		return ResponseEntity.status(HttpStatus.OK).body(String.valueOf(average));
+	}
+	
+	private double calculateSum(ColorTestDatabaseScoreEntity c) {
+		List<ColorTestDatabaseScoreEntity> scoreList = colorTestScoreRepository.findByLeftColorAndRightColorOrderByTimestamp(c.getLeftColor(), c.getRightColor());
+		if(scoreList.isEmpty()) return -1;
+		ColorTestDatabaseSumEntity sumEntity;
+		if(colorTestSumRepository.findByLeftColorAndRightColor(c.getLeftColor(), c.getRightColor()).size() == 0) {
+			sumEntity = new ColorTestDatabaseSumEntity();
+			for(ColorTestDatabaseScoreEntity entry : scoreList) {
+				sumEntity.setValue(sumEntity.getValue() + entry.getScore());
+			}
+			sumEntity.setLeftColor(c.getLeftColor());
+			sumEntity.setRightColor(c.getRightColor());
+			colorTestSumRepository.save(sumEntity);
+		} else {
+			sumEntity = colorTestSumRepository.findByLeftColorAndRightColor(c.getLeftColor(), c.getRightColor()).get(0);
+			sumEntity.setValue(sumEntity.getValue() + c.getScore());
+			colorTestSumRepository.save(sumEntity);
+		}
+		if(scoreList.size() > 10) {
+			// Remove Oldest Entry
+			sumEntity.setValue(sumEntity.getValue() - scoreList.get(0).getScore());
+			colorTestScoreRepository.delete(scoreList.get(0)); 
+			scoreList.remove(0);
+			if(scoreList.size() > 10) {
+				// Something has gone wrong. Time to for a full recount. (happens when requests come in too fast)
+				while(scoreList.size() > 10) {
+					scoreList.remove(0);
+				}
+				colorTestSumRepository.delete(sumEntity);
+				calculateSum(c);
+			}
+		}
+		return sumEntity.getValue() / scoreList.size();
 	}
 }
