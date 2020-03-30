@@ -82,4 +82,8 @@ public class ColorTestDatabaseService {
 		}
 		return sumEntity.getValue() / scoreList.size();
 	}
+	
+	public double getAverage(String leftColor, String rightColor) {
+		return colorTestSumRepository.findByLeftColorAndRightColor(leftColor, rightColor).get(0).getValue();
+	}
 }
