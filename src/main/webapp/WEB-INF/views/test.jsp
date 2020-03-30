@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<head lang="en">
+<html lang="en">
+  <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<title>${leftColor} vs. ${rightColor} - Test Your Color Perception</title>
@@ -104,7 +105,7 @@
 					// redirect to results page
 				}
 			};
-			xhttp.open("POST", "submit");
+			xhttp.open("GET", "submit");
 			xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xhttp.send("{\"leftColor\": " + JSON.stringify("${leftColor}") + ", \"rightColor\": " + JSON.stringify("${rightColor}") + ", \"score\": \"" + JSON.stringify((leftValue + rightValue) / 2) + "\"}");
 		});
@@ -114,4 +115,5 @@
         <p class="m-0 text-center text-black small">Copyright &copy; <a href="https://www.github.com/feliser">feliser</a> 2020</p>
       </div>
     </footer>
-</body>
+  </body>
+</html>
