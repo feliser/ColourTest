@@ -102,10 +102,10 @@
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if(this.readyState == 4 && this.status == 200) {
-					// redirect to results page
+					window.location.href = '/results?leftColor=${leftColor}&rightColor=${rightColor}&score=' + (leftValue + rightValue) / 2 + '';
 				}
 			};
-			xhttp.open("GET", "submit");
+			xhttp.open("POST", "submit");
 			xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xhttp.send("{\"leftColor\": " + JSON.stringify("${leftColor}") + ", \"rightColor\": " + JSON.stringify("${rightColor}") + ", \"score\": \"" + JSON.stringify((leftValue + rightValue) / 2) + "\"}");
 		});
