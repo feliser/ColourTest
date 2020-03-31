@@ -26,7 +26,7 @@ public class ColorTestController {
 		return "test"; // returns the test.jsp view
 	}
 	
-	@GetMapping(value="/results", consumes="application/json")
+	@GetMapping(value="/results")
 	public String getResults(Model model, 
 			@RequestParam(value = "leftColor", required = true) String leftColor, 
 			@RequestParam(value = "rightColor", required = true) String rightColor, 
