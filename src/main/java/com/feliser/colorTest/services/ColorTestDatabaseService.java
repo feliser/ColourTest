@@ -31,16 +31,15 @@ public class ColorTestDatabaseService {
 				|| request.getLeftColor().equals("Magenta") || request.getLeftColor().equals("Red")
 				|| request.getLeftColor().equals("Orange") || request.getLeftColor().equals("Yellow")
 				|| request.getLeftColor().equals("Lime") || request.getLeftColor().equals("White")
-				|| request.getLeftColor().equals("Black")) || !(request.getRightColor().equals("Green") || request.getRightColor().equals("Cyan")
-				|| request.getRightColor().equals("Blue") || request.getRightColor().equals("Purple")
-				|| request.getRightColor().equals("Magenta") || request.getRightColor().equals("Red")
-				|| request.getRightColor().equals("Orange") || request.getRightColor().equals("Yellow")
-				|| request.getRightColor().equals("Lime") || request.getRightColor().equals("White")
-				|| request.getRightColor().equals("Black"))) {
+				|| request.getLeftColor().equals("Black")) || !(request.getRightColor().equals("Green") 
+				|| request.getRightColor().equals("Cyan") || request.getRightColor().equals("Blue") 
+				|| request.getRightColor().equals("Purple") || request.getRightColor().equals("Magenta") 
+				|| request.getRightColor().equals("Red") || request.getRightColor().equals("Orange") 
+				|| request.getRightColor().equals("Yellow") || request.getRightColor().equals("Lime") 
+				|| request.getRightColor().equals("White") || request.getRightColor().equals("Black"))) {
 			// LeftColor or RightColor have invalid values
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
 		}
-		
 		ColorTestDatabaseScoreEntity c = new ColorTestDatabaseScoreEntity();
 		c.setScore(request.getScore()); c.setLeftColor(request.getLeftColor()); c.setRightColor(request.getRightColor());
 		colorTestScoreRepository.save(c);		
