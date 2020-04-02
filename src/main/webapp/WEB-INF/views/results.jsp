@@ -13,8 +13,7 @@
   	<header id="masthead" class="masthead text-center text-white">
       <div class="masthead-content">
         <div class="container">
-          <h1 class="masthead-heading mb-0">Color Test</h1>
-          <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Take The Test</a>
+          <h1 class="masthead-heading mb-0">Results</h1>
         </div>
       </div>
       <div class="bg-circle-1 bg-circle"></div>
@@ -22,9 +21,13 @@
       <div class="bg-circle-3 bg-circle"></div>
       <div class="bg-circle-4 bg-circle"></div>
     </header>
-  	<canvas id="results-canvas"></canvas>
+    <div class="card">
+      <canvas id="results-canvas" width="300px" height="300px">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+    </div>
   	<script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script>
+      document.getElementById("results-canvas").style.backgroundImage="linear-gradient(90deg,${leftColor},${rightColor})";
+    </script>
   </body>
 </html>
