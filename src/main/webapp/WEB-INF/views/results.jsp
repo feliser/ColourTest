@@ -23,11 +23,51 @@
     </header>
     <div class="card">
       <canvas id="results-canvas" width="300px" height="300px">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+      <div class="text-center">
+        <h3>Black Line: Your Score<br>Red Line: Average Score</h3>
+      </div>
     </div>
+    <div class="text-center">
+      <h4>What do These Results Mean?</h4>
+      <p>These results display your middleground between ${leftColor} and ${rightColor} (shown with the black line) compared to the average of others who took the test (shown with the red line).  
+      </p>
+      <a href="/" class="btn btn-start" id="start-button"><span>Back to Main Page</span></a>
+    </div>
+    <footer class="py-5 bg-black">
+      <div class="container">
+        <p class="m-0 text-center text-white small">Copyright &copy; <a href="https://www.github.com/feliser">feliser</a> 2020</p>
+      </div>
+    </footer>
   	<script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-      document.getElementById("results-canvas").style.backgroundImage="linear-gradient(90deg,${leftColor},${rightColor})";
+      var c = document.getElementById("results-canvas");
+      var ctx = document.getElementById("results-canvas").getContext("2d");
+      c.style.backgroundImage="linear-gradient(90deg,${leftColor},${rightColor})";
+      ctx.beginPath();
+      ctx.moveTo(c.width * ${score}, 0);
+      ctx.lineTo(c.width * ${score}, c.height);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(c.width * ${score}, 0);
+      ctx.lineTo(c.width * ${score}, c.height);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#000000";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(c.width * ${average}, 0);
+      ctx.lineTo(c.width * ${average}, c.height);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(c.width * ${average}, 0);
+      ctx.lineTo(c.width * ${average}, c.height);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#FF0000";
+      ctx.stroke();
     </script>
   </body>
 </html>
