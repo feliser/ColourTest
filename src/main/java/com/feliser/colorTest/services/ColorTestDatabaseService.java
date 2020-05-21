@@ -15,6 +15,7 @@ import com.feliser.colorTest.repositories.ColorTestSumRepository;
 
 @Service
 public class ColorTestDatabaseService {
+	static int MAX_ENTRIES = 1000;
 	@Autowired
 	private ColorTestScoreRepository colorTestScoreRepository;
 	
@@ -38,6 +39,9 @@ public class ColorTestDatabaseService {
 				|| request.getRightColor().equals("Yellow") || request.getRightColor().equals("Lime") 
 				|| request.getRightColor().equals("White") || request.getRightColor().equals("Black"))) {
 			// LeftColor or RightColor have invalid values
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
+		}
+		if(request.getScore() <= 0 || request.getScore() >= 1) { 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
 		}
 		ColorTestDatabaseScoreEntity c = new ColorTestDatabaseScoreEntity();
@@ -65,14 +69,14 @@ public class ColorTestDatabaseService {
 			sumEntity.setValue(sumEntity.getValue() + c.getScore());
 			colorTestSumRepository.save(sumEntity);
 		}
-		if(scoreList.size() > 10) {
+		if(scoreList.size() > MAX_ENTRIES) {
 			// Remove Oldest Entry
 			sumEntity.setValue(sumEntity.getValue() - scoreList.get(0).getScore());
 			colorTestScoreRepository.delete(scoreList.get(0)); 
 			scoreList.remove(0);
-			if(scoreList.size() > 10) {
+			if(scoreList.size() > MAX_ENTRIES) {
 				// Something has gone wrong. Time to for a full recount. (happens when requests come in too fast)
-				while(scoreList.size() > 10) {
+				while(scoreList.size() > MAX_ENTRIES) {
 					scoreList.remove(0);
 				}
 				colorTestSumRepository.delete(sumEntity);
