@@ -22,7 +22,7 @@
       <div class="bg-circle-4 bg-circle"></div>
     </header>
     <div class="card">
-      <canvas id="results-canvas" width="300px" height="300px">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+      <canvas id="results-canvas" width="2000px" height="80px">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
       <div class="text-center">
         <h3>Black Line: Your Score<br>Red Line: Average Score</h3>
       </div>
@@ -46,26 +46,26 @@
       c.style.backgroundImage="linear-gradient(90deg,${leftColor},${rightColor})";
       ctx.beginPath();
       ctx.moveTo(c.width * ${score}, 0);
-      ctx.lineTo(c.width * ${score}, c.height);
-      ctx.lineWidth = 4;
+      ctx.lineTo(c.width * ${score}, c.height/2.0);
+      ctx.lineWidth = 20;
       ctx.strokeStyle = "#FFFFFF";
       ctx.stroke();
       ctx.beginPath();
       ctx.moveTo(c.width * ${score}, 0);
-      ctx.lineTo(c.width * ${score}, c.height);
-      ctx.lineWidth = 2;
+      ctx.lineTo(c.width * ${score}, c.height/2.0);
+      ctx.lineWidth = 16;
       ctx.strokeStyle = "#000000";
       ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(c.width * ${average}, 0);
+      ctx.moveTo(c.width * ${average}, c.height/2.0);
       ctx.lineTo(c.width * ${average}, c.height);
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 20;
       ctx.strokeStyle = "#FFFFFF";
       ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(c.width * ${average}, 0);
+      ctx.moveTo(c.width * ${average}, c.height/2.0);
       ctx.lineTo(c.width * ${average}, c.height);
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 18;
       ctx.strokeStyle = "#FF0000";
       ctx.stroke();
     </script>
